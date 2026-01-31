@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subhash Bishwakarma | Portfolio</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif}
+    body{background:#0b0f1a;color:#e5e7eb;scroll-behavior:smooth}
+
+    /* LOADER */
+    #loader{position:fixed;inset:0;background:#0b0f1a;display:flex;align-items:center;justify-content:center;z-index:9999}
+    #loader span{font-size:18px;letter-spacing:1px;opacity:.8}
+
+    /* NAVBAR */
+    nav{position:sticky;top:0;z-index:1000;background:rgba(11,15,26,.7);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
+    nav a{color:#e5e7eb;text-decoration:none;margin-left:18px;font-weight:500}
+    nav a:hover{color:#38bdf8}
+
+    /* SECTIONS */
+    section{min-height:100vh;padding:100px 24px;max-width:1100px;margin:auto;position:relative}
+    h1,h2{margin-bottom:14px;font-weight:600}
+    p{color:#cbd5f5;line-height:1.6}
+
+    /* BACKGROUND SPOTS */
+    .bg-spot{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.08;z-index:-1}
+
+    /* HERO */
+    .hero{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .hero img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #2563eb;margin-bottom:18px}
+    .btn{display:inline-block;margin:10px 6px;padding:10px 20px;background:#2563eb;color:white;text-decoration:none;border-radius:999px;font-size:14px}
+
+    /* SIDE DOTS */
+    .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:1000}
+    .dots a{width:10px;height:10px;border-radius:50%;background:#475569;transition:.3s}
+    .dots a.active{background:#38bdf8;transform:scale(1.6)}
+
+    /* TABS */
+    .tabs{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+    .tabs button{padding:10px 18px;border:none;border-radius:999px;background:#1e293b;color:white;cursor:pointer}
+    .tabs button.active{background:#2563eb}
+    .tab{display:none}
+    .tab.active{display:block}
+
+    /* GRID */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .grid img{width:100%;height:160px;object-fit:cover;border-radius:16px;cursor:pointer}
+
+    /* LIGHTBOX */
+    #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:2000}
+    #lightbox img{max-width:90%;max-height:90%;border-radius:20px}
+
+    /* GAMES */
+    canvas{background:#020617;border-radius:16px;display:block;margin:20px auto}
+
+    footer{text-align:center;padding:40px;color:#64748b}
+
+    @media(max-width:700px){
+      .dots{right:8px}
+      section{padding:90px 16px}
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader"><span>Loading</span></div>
+
+<nav>
+  <strong>Subhash</strong>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="dots">
+  <a href="#home"></a>
+  <a href="#work"></a>
+  <a href="#contact"></a>
+</div>
+
+<section id="home" class="hero">
+  <div class="bg-spot" style="background-image:url('images/bg1.jpg')"></div>
+  <img src="images/profile.jpg" alt="Profile">
+  <h1>Subhash Bishwakarma</h1>
+  <p>Civil Engineer • CAD • Content Creator</p>
+  <div>
+    <a class="btn" href="https://www.facebook.com/profile.php?id=100087782397427" target="_blank">Facebook</a>
+    <a class="btn" href="https://youtube.com/@imsubhashbishwakarma
+" target="_blank">YouTube</a>
+  </div>
+</section>
+
+<section id="work">
+  <div class="bg-spot" style="background-image:url('images/bg2.jpg')"></div>
+  <h2>My Work</h2>
+
+  <div class="tabs">
+    <button class="active" onclick="openTab('projects',this)">Projects</button>
+    <button onclick="openTab('youtube',this)">YouTube</button>
+    <button onclick="openTab('games',this)">Games</button>
+  </div>
+
+  <div id="projects" class="tab active">
+    <div class="grid">
+      <img src="images/project1.jpg" onclick="openImg(this)">
+      <img src="images/project2.jpg" onclick="openImg(this)">
+    </div>
+  </div>
+
+  <div id="youtube" class="tab">
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </div>
+
+  <div id="games" class="tab">
+    <h3>Snake</h3>
+    <canvas id="snake" width="300" height="300"></canvas>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="bg-spot" style="background-image:url('images/bg3.jpg')"></div>
+  <h2>Contact</h2>
+  <p>Email: subhashbk.work@gmail.com</p>
+  <p>Phone: +977 9805921252</p>
+</section>
+
+<footer>© 2026 Subhash Bishwakarma</footer>
+
+<div id="lightbox" onclick="this.style.display='none'"><img></div>
+
+<script>
+  // loader
+  window.onload=()=>document.getElementById('loader').style.display='none'
+
+  // tabs
+  function openTab(id,btn){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'))
+    document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'))
+    document.getElementById(id).classList.add('active')
+    btn.classList.add('active')
+  }
+
+  // lightbox
+  function openImg(img){
+    const lb=document.getElementById('lightbox')
+    lb.style.display='flex'
+    lb.querySelector('img').src=img.src
+  }
+
+  // dots active
+  const sections=document.querySelectorAll('section')
+  const dots=document.querySelectorAll('.dots a')
+  window.addEventListener('scroll',()=>{
+    let current=''
+    sections.forEach(s=>{if(scrollY>=s.offsetTop-200)current=s.id})
+    dots.forEach((d,i)=>d.classList.toggle('active',sections[i].id===current))
+  })
+
+  // snake game
+  const c=document.getElementById('snake'),ctx=c.getContext('2d'),s=15
+  let snake=[{x:150,y:150}],dir={x:s,y:0},food={x:75,y:75}
+  document.addEventListener('keydown',e=>{
+    const m={ArrowUp:{x:0,y:-s},ArrowDown:{x:0,y:s},ArrowLeft:{x:-s,y:0},ArrowRight:{x:s,y:0}}
+    if(m[e.key])dir=m[e.key]
+  })
+  setInterval(()=>{
+    ctx.clearRect(0,0,300,300)
+    snake.unshift({x:snake[0].x+dir.x,y:snake[0].y+dir.y})
+    if(snake[0].x===food.x&&snake[0].y===food.y)
+      food={x:Math.floor(Math.random()*20)*s,y:Math.floor(Math.random()*20)*s}
+    else snake.pop()
+    ctx.fillStyle='#22c55e';snake.forEach(p=>ctx.fillRect(p.x,p.y,s,s))
+    ctx.fillStyle='#ef4444';ctx.fillRect(food.x,food.y,s,s)
+  },140)
+</script>
+
+</body>
+</html>
