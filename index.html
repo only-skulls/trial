@@ -1,31 +1,24 @@
 <!DOCTYPE html>
-<!-- saved from url=(0095)file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/index%20-%20Copy%20(4).html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subhash Bishwakarma</title>
+<title>Subhash Bishwakarma | Portfolio</title>
 
 <style>
-/* ===== RESET & FONT ===== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 
 html,body{
-  height:100%;
-  color:#e5e7eb;
   scroll-behavior:smooth;
-  overflow-x:hidden;
-}
-
-body{
   background:#020617;
+  color:#e5e7eb;
 }
 
-/* ===== BACKGROUND ===== */
 #nebula{
   position:fixed;
   inset:0;
@@ -34,67 +27,45 @@ body{
     radial-gradient(circle at 80% 20%, rgba(56,189,248,.30), transparent 45%),
     radial-gradient(circle at 50% 80%, rgba(236,72,153,.30), transparent 50%),
     linear-gradient(180deg,#020617,#000);
-  z-index:-3;
-}
-
-#stars{
-  position:fixed;
-  inset:0;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, white, transparent),
-    radial-gradient(1px 1px at 80% 40%, white, transparent),
-    radial-gradient(1px 1px at 50% 70%, white, transparent);
-  opacity:.35;
   z-index:-2;
 }
 
-/* ===== GLASS ===== */
 .glass{
-  background:rgba(255,255,255,.09);
-  backdrop-filter:blur(22px) saturate(150%);
-  -webkit-backdrop-filter:blur(22px) saturate(150%);
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 25px 50px rgba(0,0,0,.40);
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
 }
 
-/* ===== NAV ===== */
 nav{
   position:fixed;
   top:20px;
   width:100%;
   display:flex;
   justify-content:center;
-  gap:34px;
+  gap:30px;
   z-index:1000;
 }
 
 nav a{
-  color:#e5e7eb;
   text-decoration:none;
-  font-weight:500;
-  letter-spacing:.5px;
+  color:#e5e7eb;
   opacity:.8;
+  font-weight:500;
 }
 
 nav a:hover{opacity:1}
 
-/* ===== SECTIONS ===== */
 section{
   min-height:100vh;
   max-width:1100px;
   margin:0 auto;
-  padding:120px 28px 80px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start; /* 👈 start from top */
+  padding:120px 20px 80px;
 }
 
-/* ===== HERO ===== */
 .hero{
   text-align:center;
-  align-items:center;
-  justify-content:center; /* 👈 only Home stays centered */
 }
 
 .hero img{
@@ -102,82 +73,67 @@ section{
   height:160px;
   border-radius:50%;
   object-fit:cover;
-  margin-bottom:26px;
-  border:2px solid rgba(255,255,255,.22);
+  margin-bottom:25px;
+  border:2px solid rgba(255,255,255,.2);
 }
 
 .hero h1{
-  font-size:46px;
-  font-weight:600;
-  letter-spacing:.6px;
+  font-size:42px;
 }
 
 .hero p{
-  margin-top:14px;
+  margin-top:12px;
   color:#c7d2fe;
-  letter-spacing:.6px;
-  font-size:15px;
 }
 
 .btn{
-  margin-top:34px;
-  padding:14px 34px;
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 30px;
   border-radius:999px;
-  color:white;
   text-decoration:none;
-  background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.10));
-  border:1px solid rgba(255,255,255,.25);
+  color:white;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
   transition:.3s;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.26);
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.25);
 }
 
-/* ===== HEADINGS ===== */
 h2{
-  font-size:30px;
-  font-weight:600;
-  letter-spacing:.5px;
+  font-size:28px;
+  margin-bottom:20px;
 }
 
-/* ===== ABOUT ===== */
 #about p{
-  max-width:720px;
-  margin-top:22px;
+  max-width:700px;
   line-height:1.8;
-  font-size:16px;
   color:#dbeafe;
 }
 
-/* ===== WORK ===== */
 .accordion{
-  margin-top:34px;
+  margin-top:20px;
 }
 
 .accordion-header{
+  padding:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,.12);
   cursor:pointer;
-  padding:20px 24px;
-  border-radius:20px;
-  background:rgba(255,255,255,.14);
-  font-weight:500;
-  transition:.3s;
-}
-
-.accordion-header:hover{
-  background:rgba(255,255,255,.20);
 }
 
 .accordion-content{
   max-height:0;
   overflow:hidden;
-  transition:max-height .45s ease;
+  transition:max-height .5s ease;
 }
 
 .accordion.open .accordion-content{
-  max-height:1300px;
-  margin-top:26px;
+  max-height:2000px;
+  margin-top:20px;
 }
 
 .work-grid{
@@ -188,18 +144,17 @@ h2{
 
 .work-grid a{
   display:block;
-  padding:14px;
-  border-radius:18px;
-  background:rgba(255,255,255,.10);
   text-align:center;
   text-decoration:none;
   color:#e5e7eb;
+  background:rgba(255,255,255,.08);
+  padding:12px;
+  border-radius:14px;
   transition:.3s;
-  font-size:14px;
 }
 
 .work-grid a:hover{
-  transform:translateY(-4px);
+  transform:translateY(-3px);
   background:rgba(255,255,255,.18);
 }
 
@@ -207,40 +162,30 @@ h2{
   width:100%;
   height:120px;
   object-fit:cover;
-  border-radius:14px;
+  border-radius:10px;
   margin-bottom:10px;
 }
 
-/* ===== CONTACT ===== */
 .copy-row{
   display:flex;
-  gap:16px;
-  margin-top:20px;
-  align-items:center;
+  gap:15px;
+  margin-top:15px;
   flex-wrap:wrap;
-  font-size:15px;
-}
-
-.copy-label{
-  color:#c7d2fe;
-  min-width:64px;
 }
 
 .copy-btn{
-  padding:6px 18px;
+  padding:5px 15px;
   border-radius:999px;
   cursor:pointer;
-  background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.25);
-  color:#fff;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
+  color:white;
 }
 
-/* ===== FOOTER ===== */
 footer{
   text-align:center;
   padding:40px;
   color:#94a3b8;
-  font-size:14px;
 }
 </style>
 </head>
@@ -248,55 +193,46 @@ footer{
 <body>
 
 <div id="nebula"></div>
-<div id="stars"></div>
 
 <nav>
-  <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/index%20-%20Copy%20(4).html#home">Home</a>
-  <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/index%20-%20Copy%20(4).html#about">About</a>
-  <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/index%20-%20Copy%20(4).html#work">Work</a>
-  <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/index%20-%20Copy%20(4).html#contact">Contact</a>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<section id="home" class="hero glass" style="
-    margin-bottom: 30px;
-">
-  <img src="./index_files/profile.jpg" alt="Subhash">
+<section id="home" class="hero glass">
+  <img src="assets/profile.jpg" alt="Subhash">
   <h1>Subhash Bishwakarma</h1>
   <p>Civil Engineer • Content Creator • Optimistic Learner</p>
-  <a class="btn" href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/cv/Subhash_CV.pdf" download="" target="_blank">Download My CV</a>
+  <a class="btn" href="cv/Subhash_CV.pdf" target="_blank">Download My CV</a>
 </section>
 
-<section id="about" class="glass" style="
-    margin-bottom: 30px;
-">
+<section id="about" class="glass">
   <h2>About Me</h2>
   <p>
-    
-I’m fascinated by science, tech, machinery, and philosophy, always seeking to learn and discover.
-Sci-fi picks: Star Trek, Doctor Who, and anything that sparks imagination.
-  
+  I’m fascinated by science, tech, machinery, and philosophy — always learning and discovering.
+  Sci-fi picks: Star Trek, Doctor Who, and anything that sparks imagination.
   </p>
 </section>
 
-<section id="work" class="glass" style="
-    margin-bottom: 30px;
-">
+<section id="work" class="glass">
   <h2>My Work</h2>
 
   <div class="accordion" onclick="toggleAccordion(this)">
-    <div class="accordion-header">AutoCAD</div>
+    <div class="accordion-header">AutoCAD Projects</div>
     <div class="accordion-content">
       <div class="work-grid">
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img1.jpg" target="_blank"><img src="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img1.jpg">Image 1</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img2.jpg" target="_blank"><img src="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img2.jpg">Image 2</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img3.jpg" target="_blank"><img src="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img3.jpg">Image 3</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img4.jpg" target="_blank"><img src="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img4.jpg">Image 4</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img5.jpg" target="_blank"><img src="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img5.jpg">Image 5</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img6.jpg" target="_blank"><img src="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/img6.jpg">Image 6</a>
+        <a href="works/autocad/img1.jpg" target="_blank"><img src="works/autocad/img1.jpg">Image 1</a>
+        <a href="works/autocad/img2.jpg" target="_blank"><img src="works/autocad/img2.jpg">Image 2</a>
+        <a href="works/autocad/img3.jpg" target="_blank"><img src="works/autocad/img3.jpg">Image 3</a>
+        <a href="works/autocad/img4.jpg" target="_blank"><img src="works/autocad/img4.jpg">Image 4</a>
+        <a href="works/autocad/img5.jpg" target="_blank"><img src="works/autocad/img5.jpg">Image 5</a>
+        <a href="works/autocad/img6.jpg" target="_blank"><img src="works/autocad/img6.jpg">Image 6</a>
 
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/file1.pdf" target="_blank">📄 Drawing 1</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/file2.pdf" target="_blank">📄 Drawing 2</a>
-        <a href="file:///C:/Users/skull_crusher/OneDrive/Desktop/Portfolio%20website/works/autocad/file3.pdf" target="_blank">📄 Drawing 3</a>
+        <a href="works/autocad/file1.pdf" target="_blank">📄 Drawing 1</a>
+        <a href="works/autocad/file2.pdf" target="_blank">📄 Drawing 2</a>
+        <a href="works/autocad/file3.pdf" target="_blank">📄 Drawing 3</a>
       </div>
     </div>
   </div>
@@ -306,15 +242,13 @@ Sci-fi picks: Star Trek, Doctor Who, and anything that sparks imagination.
   <h2>Contact</h2>
 
   <div class="copy-row">
-    <span class="copy-label">Email:</span>
     <span id="email">subhashbk.work@gmail.com</span>
-    <button class="copy-btn" onclick="copyText(&#39;email&#39;,this)">Copy</button>
+    <button class="copy-btn" onclick="copyText('email',this)">Copy</button>
   </div>
 
   <div class="copy-row">
-    <span class="copy-label">Phone:</span>
     <span id="phone">+977 9805921252</span>
-    <button class="copy-btn" onclick="copyText(&#39;phone&#39;,this)">Copy</button>
+    <button class="copy-btn" onclick="copyText('phone',this)">Copy</button>
   </div>
 </section>
 
@@ -332,6 +266,5 @@ function copyText(id,btn){
 }
 </script>
 
-
-
-</body></html>
+</body>
+</html>
