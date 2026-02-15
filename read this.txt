@@ -1,0 +1,21 @@
+portfolio/
+│
+├── index.html
+│
+├── assets/
+│   ├── profile.jpg
+│
+├── cv/
+│   └── Subhash_CV.pdf
+│
+└── works/
+    └── autocad/
+        ├── img1.jpg
+        ├── img2.jpg
+        ├── img3.jpg
+        ├── img4.jpg
+        ├── img5.jpg
+        ├── img6.jpg
+        ├── file1.pdf
+        ├── file2.pdf
+        └── file3.pdf
