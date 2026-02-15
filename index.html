@@ -6,263 +6,425 @@
 <title>Subhash Bishwakarma | Portfolio</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+/* --- CORE STYLES --- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+
+html, body {
+  scroll-behavior: smooth;
+  color: #e5e7eb;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-html,body{
-  scroll-behavior:smooth;
-  background:#020617;
-  color:#e5e7eb;
+/* --- BACKGROUND SYSTEMS --- */
+#bg-container {
+  position: fixed; inset: 0; z-index: -2;
+  transition: background 1s ease;
 }
 
-#nebula{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(138,92,246,.40), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(56,189,248,.30), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(236,72,153,.30), transparent 50%),
-    linear-gradient(180deg,#020617,#000);
-  z-index:-2;
+/* Theme 1: Colorful Nebula (Default) */
+.theme-nebula {
+  background-color: #020617;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(120, 50, 255, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(50, 200, 255, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(255, 50, 150, 0.25) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(0,0,0,0) 0%, #020617 100%);
 }
 
-.glass{
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(20px);
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
+/* Theme 2: Midnight Blue */
+.theme-midnight {
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(30, 41, 59, 0.8), #0f172a 90%);
 }
 
-nav{
-  position:fixed;
-  top:20px;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  z-index:1000;
+/* Theme 3: Deep Purple */
+.theme-purple {
+  background-color: #1a0b2e;
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(118, 30, 168, 0.3), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(76, 29, 149, 0.4), transparent 50%);
 }
 
-nav a{
-  text-decoration:none;
-  color:#e5e7eb;
-  opacity:.8;
-  font-weight:500;
+#stars { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+/* --- UI COMPONENTS --- */
+/* Navigation */
+nav {
+  position:fixed; top:20px; width:100%; display:flex; justify-content:center; gap:30px; z-index:1000;
+  background: rgba(0,0,0,0.2); backdrop-filter: blur(5px); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+nav a { text-decoration:none; color:#e5e7eb; opacity:.8; transition:0.3s; font-weight:500; font-size: 0.95rem; }
+nav a:hover { opacity:1; color:#38bdf8; text-shadow: 0 0 10px rgba(56,189,248,0.5); }
+
+/* Theme Toggle Button */
+.theme-btn {
+  position: fixed; top: 25px; right: 30px; z-index: 1001;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer;
+  backdrop-filter: blur(10px); transition: 0.3s; font-size: 0.8rem;
+}
+.theme-btn:hover { background: rgba(56,189,248,0.3); border-color: #38bdf8; }
+
+/* Hero Section */
+.hero {
+  height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+}
+.hero img {
+  width:180px; height:180px; border-radius:50%; object-fit:cover; margin-bottom:25px;
+  border:3px solid rgba(255,255,255,.1); box-shadow: 0 0 40px rgba(56,189,248,0.3);
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+.cv-btn {
+  margin-top: 30px; padding: 14px 35px; border-radius: 999px; text-decoration: none;
+  color: white; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px); transition: 0.3s; font-weight: 600; letter-spacing: 0.5px;
+}
+.cv-btn:hover { background: rgba(56,189,248,0.2); border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+/* Content Sections */
+section { max-width:1100px; margin:0 auto; padding:100px 20px; }
+.glass {
+  background:rgba(255,255,255,.03); backdrop-filter:blur(16px);
+  border-radius:24px; border:1px solid rgba(255,255,255,.08); padding: 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 
-nav a:hover{opacity:1}
+/* Tabs */
+.tabs-menu { display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 10px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
+  background: transparent; color: #94a3b8; cursor: pointer; transition: 0.3s;
+}
+.tab-btn:hover { color: white; border-color: white; }
+.tab-btn.active { background: #38bdf8; color: #020617; border-color: #38bdf8; font-weight: bold; }
 
-section{
-  min-height:100vh;
-  max-width:1100px;
-  margin:0 auto;
-  padding:120px 20px 80px;
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Grid & Cards */
+.work-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:25px; }
+.card {
+  background:rgba(0,0,0,0.2); padding:25px; border-radius:20px;
+  border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+}
+.card:hover { transform: translateY(-5px); border-color: rgba(56,189,248,0.3); }
+
+/* Collapsible Details */
+details {
+  margin-top: 15px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
 }
 
-.hero{
-  text-align:center;
+summary {
+  padding: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none; /* Hides default triangle */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s;
 }
 
-.hero img{
-  width:160px;
-  height:160px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:25px;
-  border:2px solid rgba(255,255,255,.2);
+summary:hover {
+  background: rgba(255,255,255,0.05);
+  color: #38bdf8;
 }
 
-.hero h1{
-  font-size:42px;
+summary::after {
+  content: '+'; 
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.hero p{
-  margin-top:12px;
-  color:#c7d2fe;
+details[open] summary::after {
+  content: '-';
 }
 
-.btn{
-  display:inline-block;
-  margin-top:30px;
-  padding:12px 30px;
-  border-radius:999px;
-  text-decoration:none;
-  color:white;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.2);
-  transition:.3s;
+details[open] summary {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-  background:rgba(255,255,255,.25);
+.details-content {
+  padding: 15px;
+  animation: slideDown 0.3s ease-out;
 }
 
-h2{
-  font-size:28px;
-  margin-bottom:20px;
-}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-#about p{
-  max-width:700px;
-  line-height:1.8;
-  color:#dbeafe;
+/* File Slot Grid */
+.file-slot-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.file-slot {
+  background: rgba(255,255,255,0.05); border-radius: 12px; padding: 10px; text-align: center;
+  transition: 0.3s; cursor: pointer; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
+.file-slot:hover { background: rgba(56,189,248,0.1); transform: scale(1.05); }
+.file-slot img { width: 100%; height: 60px; object-fit: cover; border-radius: 6px; margin-bottom: 5px; }
+.file-slot span { font-size: 0.65rem; color: #94a3b8; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pdf-icon { font-size: 1.5rem; margin-bottom: 5px; }
 
-.accordion{
-  margin-top:20px;
+/* Social Links */
+.social-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;
+  margin-bottom: 10px; text-decoration: none; color: white; transition: 0.3s;
 }
+.social-link:hover { background: rgba(56,189,248,0.15); border-left: 4px solid #38bdf8; }
+.stat-badge { background: #38bdf8; color: #020617; padding: 2px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
 
-.accordion-header{
-  padding:18px;
-  border-radius:16px;
-  background:rgba(255,255,255,.12);
-  cursor:pointer;
-}
+/* Contact & Footer */
+.contact-label { color: #94a3b8; margin-right: 10px; font-weight: normal; }
+.copy-row { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 10px; }
+.copy-text-group { display: flex; align-items: center; gap: 10px; }
+.copy-btn { padding: 6px 15px; border-radius: 8px; border: none; background: #38bdf8; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap; }
+.copy-btn:hover { background: #7dd3fc; }
 
-.accordion-content{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .5s ease;
-}
+footer { text-align:center; padding:50px; color:#64748b; font-size: 0.9rem; }
 
-.accordion.open .accordion-content{
-  max-height:2000px;
-  margin-top:20px;
-}
-
-.work-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:20px;
-}
-
-.work-grid a{
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  color:#e5e7eb;
-  background:rgba(255,255,255,.08);
-  padding:12px;
-  border-radius:14px;
-  transition:.3s;
-}
-
-.work-grid a:hover{
-  transform:translateY(-3px);
-  background:rgba(255,255,255,.18);
-}
-
-.work-grid img{
-  width:100%;
-  height:120px;
-  object-fit:cover;
-  border-radius:10px;
-  margin-bottom:10px;
-}
-
-.copy-row{
-  display:flex;
-  gap:15px;
-  margin-top:15px;
-  flex-wrap:wrap;
-}
-
-.copy-btn{
-  padding:5px 15px;
-  border-radius:999px;
-  cursor:pointer;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.2);
-  color:white;
-}
-
-footer{
-  text-align:center;
-  padding:40px;
-  color:#94a3b8;
+/* Mobile Tweaks */
+@media (max-width: 600px) {
+  .file-slot-container { grid-template-columns: repeat(3, 1fr); } /* Keep 3 for small icons, or change to 2 if too cramped */
+  .hero h1 { font-size: 2rem !important; }
 }
 </style>
 </head>
-
 <body>
 
-<div id="nebula"></div>
+<div id="bg-container" class="theme-nebula"></div>
+<canvas id="stars"></canvas>
+
+<button class="theme-btn" onclick="toggleTheme()">🎨 Change Theme</button>
 
 <nav>
   <a href="#home">Home</a>
+  <a href="#work">Projects</a>
   <a href="#about">About</a>
-  <a href="#work">Work</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="home" class="hero glass">
-  <img src="assets/profile.jpg" alt="Subhash">
-  <h1>Subhash Bishwakarma</h1>
-  <p>Civil Engineer • Content Creator • Optimistic Learner</p>
-  <a class="btn" href="cv/Subhash_CV.pdf" target="_blank">Download My CV</a>
-</section>
-
-<section id="about" class="glass">
-  <h2>About Me</h2>
-  <p>
-  I’m fascinated by science, tech, machinery, and philosophy — always learning and discovering.
-  Sci-fi picks: Star Trek, Doctor Who, and anything that sparks imagination.
+<section id="home" class="hero">
+  <img src="assets/profile.jpg" alt="Subhash" onerror="this.src='https://via.placeholder.com/150'">
+  <h1 style="font-size: 3rem; margin-bottom: 10px;">Subhash Bishwakarma</h1>
+  <p style="font-size: 1.2rem; color: #c7d2fe; max-width: 600px;">
+    Civil Engineer • Content Creator • Optimistic Learner
   </p>
+  <a href="cv/Subhash_CV.pdf" target="_blank" class="cv-btn">Download My CV</a>
 </section>
 
-<section id="work" class="glass">
-  <h2>My Work</h2>
+<section id="work">
+  <div class="glass">
+    <h2 style="text-align:center; margin-bottom:30px; font-size: 2rem;">Portfolio</h2>
+    <div class="tabs-menu">
+      <button class="tab-btn active" onclick="switchTab('eng', this)">Engineering</button>
+      <button class="tab-btn" onclick="switchTab('social', this)">Content Creation</button>
+    </div>
 
-  <div class="accordion" onclick="toggleAccordion(this)">
-    <div class="accordion-header">AutoCAD Projects</div>
-    <div class="accordion-content">
+    <div id="eng" class="tab-content active">
       <div class="work-grid">
-        <a href="works/autocad/img1.jpg" target="_blank"><img src="works/autocad/img1.jpg">Image 1</a>
-        <a href="works/autocad/img2.jpg" target="_blank"><img src="works/autocad/img2.jpg">Image 2</a>
-        <a href="works/autocad/img3.jpg" target="_blank"><img src="works/autocad/img3.jpg">Image 3</a>
-        <a href="works/autocad/img4.jpg" target="_blank"><img src="works/autocad/img4.jpg">Image 4</a>
-        <a href="works/autocad/img5.jpg" target="_blank"><img src="works/autocad/img5.jpg">Image 5</a>
-        <a href="works/autocad/img6.jpg" target="_blank"><img src="works/autocad/img6.jpg">Image 6</a>
+        
+        <div class="card">
+          <h3>AutoCAD Projects</h3>
+          <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px;">Drafting & Structural Designs</p>
+          
+          <details>
+            <summary>📂 View 3 Images</summary>
+            <div class="details-content">
+              <div class="file-slot-container">
+                <a href="#" class="file-slot"><img src="https://via.placeholder.com/100/333" alt="DWG"><span>Image 1</span></a>
+                <a href="#" class="file-slot"><img src="https://via.placeholder.com/100/333" alt="DWG"><span>Image 2</span></a>
+                <a href="#" class="file-slot"><img src="https://via.placeholder.com/100/333" alt="DWG"><span>Image 3</span></a>
+              </div>
+            </div>
+          </details>
 
-        <a href="works/autocad/file1.pdf" target="_blank">📄 Drawing 1</a>
-        <a href="works/autocad/file2.pdf" target="_blank">📄 Drawing 2</a>
-        <a href="works/autocad/file3.pdf" target="_blank">📄 Drawing 3</a>
+          <details>
+            <summary>📄 View 3 PDFs</summary>
+            <div class="details-content">
+              <div class="file-slot-container">
+                <a href="#" class="file-slot"><div class="pdf-icon">📄</div><span>Project 1.pdf</span></a>
+                <a href="#" class="file-slot"><div class="pdf-icon">📄</div><span>Project 2.pdf</span></a>
+                <a href="#" class="file-slot"><div class="pdf-icon">📄</div><span>Project 3.pdf</span></a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card">
+          <h3>BIM & Revit</h3>
+          <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px;">3D Modeling & Analysis</p>
+          
+          <details>
+            <summary>📂 View 3 Images</summary>
+            <div class="details-content">
+              <div class="file-slot-container">
+                <a href="#" class="file-slot"><img src="https://via.placeholder.com/100/333" alt="Revit"><span>Model 1</span></a>
+                <a href="#" class="file-slot"><img src="https://via.placeholder.com/100/333" alt="Revit"><span>Model 2</span></a>
+                <a href="#" class="file-slot"><img src="https://via.placeholder.com/100/333" alt="Revit"><span>Model 3</span></a>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>📄 View 3 PDFs</summary>
+            <div class="details-content">
+              <div class="file-slot-container">
+                <a href="#" class="file-slot"><div class="pdf-icon">📄</div><span>Report 1.pdf</span></a>
+                <a href="#" class="file-slot"><div class="pdf-icon">📄</div><span>Report 2.pdf</span></a>
+                <a href="#" class="file-slot"><div class="pdf-icon">📄</div><span>Report 3.pdf</span></a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="social" class="tab-content">
+      <div class="work-grid">
+        <div class="card">
+          <h3>YouTube Channels</h3>
+          <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px;">Video Production & Editing</p>
+          <a href="https://youtube.com/@LifeInBits" target="_blank" class="social-link">
+            <span>Life in Bits</span><span class="stat-badge">1.2K Subs</span>
+          </a>
+          <a href="https://youtube.com/@RandomizedRealms" target="_blank" class="social-link">
+            <span>Randomized Realms</span><span class="stat-badge">500 Subs</span>
+          </a>
+          <a href="https://youtube.com/@SubhashBishwakarma" target="_blank" class="social-link">
+            <span>Subhash Bishwakarma</span><span class="stat-badge">Creator</span>
+          </a>
+        </div>
+        <div class="card">
+          <h3>Social Media</h3>
+          <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px;">Short form content</p>
+          <a href="https://tiktok.com/@subhash_creations" target="_blank" class="social-link">
+            <span>TikTok Profile</span><span class="stat-badge">10K</span>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-link">
+            <span>Facebook Page</span><span class="stat-badge">Connect</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact" class="glass">
-  <h2>Contact</h2>
-
-  <div class="copy-row">
-    <span id="email">subhashbk.work@gmail.com</span>
-    <button class="copy-btn" onclick="copyText('email',this)">Copy</button>
+<section id="about">
+  <div class="glass">
+    <h2>About Me</h2>
+    <p style="line-height:1.8; margin-top:20px; font-size:1.1rem; color:#dbeafe;">
+      I am a Diploma Civil Engineer specializing in structural drafting and AutoCAD. 
+      My philosophy is built on continuous learning—I bridge the gap between technical engineering 
+      and creative digital content. Whether it's designing a precise floor plan or editing an engaging video, 
+      I aim for perfection and storytelling.
+    </p>
   </div>
+</section>
 
-  <div class="copy-row">
-    <span id="phone">+977 9805921252</span>
-    <button class="copy-btn" onclick="copyText('phone',this)">Copy</button>
+<section id="contact">
+  <div class="glass">
+    <h2>Contact Me</h2>
+    <div class="copy-row">
+      <div class="copy-text-group">
+        <span class="contact-label">Gmail:</span>
+        <span id="email">subhashbk.work@gmail.com</span>
+      </div>
+      <button class="copy-btn" onclick="copyText('email',this)">Copy</button>
+    </div>
+    <div class="copy-row">
+      <div class="copy-text-group">
+        <span class="contact-label">Phone:</span>
+        <span id="phone">+977 9805921252</span>
+      </div>
+      <button class="copy-btn" onclick="copyText('phone',this)">Copy</button>
+    </div>
   </div>
 </section>
 
 <footer>© 2026 Subhash Bishwakarma</footer>
 
 <script>
-function toggleAccordion(el){
-  el.classList.toggle("open");
+/* --- Star Animation Logic --- */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [];
+const numStars = 200;
+
+function initStars() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = [];
+  for(let i=0; i<numStars; i++){
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5,
+      speed: Math.random() * 0.5 + 0.1,
+      alpha: Math.random()
+    });
+  }
 }
 
-function copyText(id,btn){
-  navigator.clipboard.writeText(document.getElementById(id).innerText);
-  btn.innerText="Copied ✓";
-  setTimeout(()=>btn.innerText="Copy",1200);
+function animateStars(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.y += s.speed;
+    if(s.y > canvas.height) {
+      s.y = -5;
+      s.x = Math.random() * canvas.width;
+    }
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  requestAnimationFrame(animateStars);
+}
+
+window.addEventListener('resize', initStars);
+initStars();
+animateStars();
+
+
+/* --- Theme Switcher Logic --- */
+const themes = ['theme-nebula', 'theme-midnight', 'theme-purple'];
+let currentThemeIndex = 0;
+const bgContainer = document.getElementById('bg-container');
+
+function toggleTheme() {
+  bgContainer.classList.remove(themes[currentThemeIndex]);
+  currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+  bgContainer.classList.add(themes[currentThemeIndex]);
+}
+
+
+/* --- Tab Logic --- */
+function switchTab(id, btn){
+  document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  btn.classList.add("active");
+}
+
+/* --- Copy Logic --- */
+function copyText(id, btn){
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text);
+  const oldText = btn.innerText;
+  btn.innerText = "Copied!";
+  btn.style.background = "#4ade80"; 
+  setTimeout(() => {
+    btn.innerText = oldText;
+    btn.style.background = "#38bdf8"; 
+  }, 1500);
 }
 </script>
 
