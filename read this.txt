@@ -1,21 +1,26 @@
-portfolio/
+/my-portfolio (Root Folder)
 │
-├── index.html
+├── index.html                <-- (The code I gave you goes here)
 │
-├── assets/
-│   ├── profile.jpg
+├── /assets
+│   └── profile.jpg           <-- (Your profile picture)
 │
-├── cv/
-│   └── Subhash_CV.pdf
+├── /cv
+│   └── Subhash_CV.pdf        <-- (Your Resume)
 │
-└── works/
-    └── autocad/
-        ├── img1.jpg
-        ├── img2.jpg
-        ├── img3.jpg
-        ├── img4.jpg
-        ├── img5.jpg
-        ├── img6.jpg
-        ├── file1.pdf
-        ├── file2.pdf
-        └── file3.pdf
+└── /works
+    ├── /autocad
+    │   ├── img1.jpg          <-- (AutoCAD Image 1)
+    │   ├── img2.jpg          <-- (AutoCAD Image 2)
+    │   ├── img3.jpg          <-- (AutoCAD Image 3)
+    │   ├── file1.pdf         <-- (AutoCAD PDF 1)
+    │   ├── file2.pdf         <-- (AutoCAD PDF 2)
+    │   └── file3.pdf         <-- (AutoCAD PDF 3)
+    │
+    └── /bim
+        ├── img1.jpg          <-- (BIM Image 1)
+        ├── img2.jpg          <-- (BIM Image 2)
+        ├── img3.jpg          <-- (BIM Image 3)
+        ├── file1.pdf         <-- (BIM PDF 1)
+        ├── file2.pdf         <-- (BIM PDF 2)
+        └── file3.pdf         <-- (BIM PDF 3)
