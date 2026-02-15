@@ -52,24 +52,25 @@ html, body {
 /* --- UI COMPONENTS --- */
 /* Navigation */
 nav {
-  position:fixed; top:20px; width:100%; display:flex; justify-content:center; gap:30px; z-index:1000;
-  background: rgba(0,0,0,0.2); backdrop-filter: blur(5px); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  position:fixed; top:0; width:100%; display:flex; justify-content:center; align-items: center; gap:30px; z-index:1000;
+  background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 nav a { text-decoration:none; color:#e5e7eb; opacity:.8; transition:0.3s; font-weight:500; font-size: 0.95rem; }
 nav a:hover { opacity:1; color:#38bdf8; text-shadow: 0 0 10px rgba(56,189,248,0.5); }
 
 /* Theme Toggle Button */
 .theme-btn {
-  position: fixed; top: 25px; right: 30px; z-index: 1001;
+  position: fixed; bottom: 20px; right: 20px; z-index: 1001;
   background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-  color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer;
+  color: white; padding: 10px 15px; border-radius: 50px; cursor: pointer;
   backdrop-filter: blur(10px); transition: 0.3s; font-size: 0.8rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 .theme-btn:hover { background: rgba(56,189,248,0.3); border-color: #38bdf8; }
 
 /* Hero Section */
 .hero {
-  height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px 20px 20px;
 }
 .hero img {
   width:180px; height:180px; border-radius:50%; object-fit:cover; margin-bottom:25px;
@@ -86,7 +87,7 @@ nav a:hover { opacity:1; color:#38bdf8; text-shadow: 0 0 10px rgba(56,189,248,0.
 .cv-btn:hover { background: rgba(56,189,248,0.2); border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
 /* Content Sections */
-section { max-width:1100px; margin:0 auto; padding:100px 20px; }
+section { max-width:1100px; margin:0 auto; padding:80px 20px; }
 .glass {
   background:rgba(255,255,255,.03); backdrop-filter:blur(16px);
   border-radius:24px; border:1px solid rgba(255,255,255,.08); padding: 40px;
@@ -107,7 +108,13 @@ section { max-width:1100px; margin:0 auto; padding:100px 20px; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Grid & Cards */
-.work-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:25px; }
+.work-grid { 
+  display:grid; 
+  /* Changed minmax from 350px to 290px to fit mobile screens better */
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); 
+  gap:25px; 
+}
+
 .card {
   background:rgba(0,0,0,0.2); padding:25px; border-radius:20px;
   border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
@@ -183,16 +190,45 @@ details[open] summary {
 /* Contact & Footer */
 .contact-label { color: #94a3b8; margin-right: 10px; font-weight: normal; }
 .copy-row { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 10px; }
-.copy-text-group { display: flex; align-items: center; gap: 10px; }
-.copy-btn { padding: 6px 15px; border-radius: 8px; border: none; background: #38bdf8; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap; }
+.copy-text-group { display: flex; align-items: center; gap: 10px; overflow: hidden; }
+.copy-text-group span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.copy-btn { padding: 6px 15px; border-radius: 8px; border: none; background: #38bdf8; cursor: pointer; font-weight: bold; transition: 0.2s; white-space: nowrap; flex-shrink: 0;}
 .copy-btn:hover { background: #7dd3fc; }
 
-footer { text-align:center; padding:50px; color:#64748b; font-size: 0.9rem; }
+footer { text-align:center; padding:50px 20px; color:#64748b; font-size: 0.9rem; }
 
-/* Mobile Tweaks */
-@media (max-width: 600px) {
-  .file-slot-container { grid-template-columns: repeat(3, 1fr); } /* Keep 3 for small icons, or change to 2 if too cramped */
-  .hero h1 { font-size: 2rem !important; }
+/* --- MOBILE OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+  /* Stack Navbar and reduce size */
+  nav { gap: 15px; padding: 12px 0; }
+  nav a { font-size: 0.85rem; }
+  
+  /* Adjust Theme Button */
+  .theme-btn { bottom: 20px; right: 20px; padding: 12px 18px; font-size: 0.9rem; }
+
+  /* Hero Adjustments */
+  .hero h1 { font-size: 2.2rem !important; line-height: 1.2; }
+  .hero p { font-size: 1rem !important; padding: 0 10px; }
+  .hero img { width: 140px; height: 140px; }
+
+  /* Section Spacing */
+  section { padding: 60px 15px; }
+  
+  /* Card/Glass Internal Spacing */
+  .glass { padding: 25px 20px; border-radius: 16px; }
+  .card { padding: 20px; }
+  
+  /* Force Single Column on Grid */
+  .work-grid { grid-template-columns: 1fr; }
+  
+  /* File Slots: Ensure 3 columns still look okay, or switch to 2 if names are long */
+  .file-slot-container { gap: 8px; }
+  .file-slot span { font-size: 0.6rem; }
+
+  /* Contact Section: Stack vertically if text is long */
+  .copy-row { flex-direction: column; align-items: stretch; gap: 12px; text-align: center; }
+  .copy-text-group { flex-direction: column; gap: 5px; }
+  .copy-btn { width: 100%; margin-top: 5px; }
 }
 </style>
 </head>
@@ -201,7 +237,7 @@ footer { text-align:center; padding:50px; color:#64748b; font-size: 0.9rem; }
 <div id="bg-container" class="theme-nebula"></div>
 <canvas id="stars"></canvas>
 
-<button class="theme-btn" onclick="toggleTheme()">🎨 Change Theme</button>
+<button class="theme-btn" onclick="toggleTheme()">🎨 Theme</button>
 
 <nav>
   <a href="#home">Home</a>
@@ -266,8 +302,8 @@ footer { text-align:center; padding:50px; color:#64748b; font-size: 0.9rem; }
             <div class="details-content">
               <div class="file-slot-container">
                 <a href="works/bim/img1.jpg" target="_blank" class="file-slot"><img src="works/bim/img1.jpg" alt="Revit"><span>Model 1</span></a>
-                <a href="works/bim/img2.jpg" target="_blank" class="file-slot"><img src="works/bim/img2.jpg" alt="Revit"><span>Mode2 1</span></a>
-                <a href="works/bim/img3.jpg" target="_blank" class="file-slot"><img src="works/bim/img3.jpg" alt="Revit"><span>Mode3 1</span></a>
+                <a href="works/bim/img2.jpg" target="_blank" class="file-slot"><img src="works/bim/img2.jpg" alt="Revit"><span>Model 2</span></a>
+                <a href="works/bim/img3.jpg" target="_blank" class="file-slot"><img src="works/bim/img3.jpg" alt="Revit"><span>Model 3</span></a>
               </div>
             </div>
           </details>
@@ -321,7 +357,7 @@ footer { text-align:center; padding:50px; color:#64748b; font-size: 0.9rem; }
   <div class="glass">
     <h2>About Me</h2>
     <p style="line-height:1.8; margin-top:20px; font-size:1.1rem; color:#dbeafe;">
-      I’m fascinated by science, tech, machinery, and philosophy, always seeking to learn and discover.<br>
+      I’m fascinated by science, tech, machinery, and philosophy, always seeking to learn and discover.<br><br>
       Sci-fi picks: Star Trek, Doctor Who, and anything that sparks imagination. 
     </p>
   </div>
@@ -428,14 +464,3 @@ function copyText(id, btn){
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
